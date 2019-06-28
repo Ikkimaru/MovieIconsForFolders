@@ -1,11 +1,75 @@
 How to guide:
 
-Go to Website:
-https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/image-sdk-python-quickstart
+DID NOT WORK{
+	Go to Website:
+	https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/image-sdk-python-quickstart
 
-Install Stuff:
-pip3 install azure-cognitiveservices-search-imagesearch
+	Install Stuff:
+	pip3 install azure-cognitiveservices-search-imagesearch
 
-Create Azure Subscription Account:
-https://docs.microsoft.com/en-gb/azure/cognitive-services/cognitive-services-apis-create-account
+	Create Azure Subscription Account:
+	https://docs.microsoft.com/en-gb/azure/cognitive-services/cognitive-services-apis-create-account
 
+	Code:
+	{
+		#Code from: https://github.com/Azure-Samples/cognitive-services-python-sdk-samples/blob/master/samples/search/image-search-quickstart.py
+
+		subscription_key = "1f169e3799c04dea821b180437a86817"
+		search_term = "canadian rockies"
+
+		"""
+		This application will search images on the web with the Bing Image Search API and print out first image result.
+		"""
+		#create the image search client
+		client = ImageSearchAPI(CognitiveServicesCredentials(subscription_key))
+		# send a search query to the Bing Image Search API
+		image_results = client.images.search(query=search_term)
+		print("Searching the web for images of: {}".format(search_term))
+
+		# Image results
+		if image_results.value:
+		    first_image_result = image_results.value[0]
+		    print("Total number of images returned: {}".format(len(image_results.value)))
+		    print("First image thumbnail url: {}".format(first_image_result.thumbnail_url))
+		    print("First image content url: {}".format(first_image_result.content_url))
+		else:
+		    print("Couldn't find image results!")
+	}
+}
+
+Did not Work
+{
+	Go to Website:
+	https://pypi.org/project/image-search/
+
+	Install Stuff:
+	pip install image-search
+
+	Install ChromeDrive:
+	https://tecadmin.net/setup-selenium-chromedriver-on-ubuntu/
+
+	Code
+	{
+		image_search google dog --limit 10 --json
+	}
+}
+
+WORKING
+{
+	Website:
+	https://google-images-download.readthedocs.io/en/latest/examples.html
+
+	Install:
+	pip3 install google_images_download
+
+	Working Code:
+	{
+		from google_images_download import google_images_download   #importing the library
+
+		response = google_images_download.googleimagesdownload()   #class instantiation
+
+		arguments = {"keywords":"Black Panther Movie Poster","limit":1,"print_urls":True}   #creating list of arguments
+		paths = response.download(arguments)   #passing the arguments to the function
+		print(paths)   #printing absolute paths of the downloaded images
+	}
+}
