@@ -37,7 +37,7 @@ DID NOT WORK{
 	}
 }
 
-Did not Work
+DID NOT WORK
 {
 	Go to Website:
 	https://pypi.org/project/image-search/
@@ -54,7 +54,7 @@ Did not Work
 	}
 }
 
-WORKING
+WORKING IMAGE SEARCH
 {
 	Website:
 	https://google-images-download.readthedocs.io/en/latest/examples.html
