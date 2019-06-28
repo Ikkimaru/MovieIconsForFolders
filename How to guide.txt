@@ -1,0 +1,11 @@
+How to guide:
+
+Go to Website:
+https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/image-sdk-python-quickstart
+
+Install Stuff:
+pip3 install azure-cognitiveservices-search-imagesearch
+
+Create Azure Subscription Account:
+https://docs.microsoft.com/en-gb/azure/cognitive-services/cognitive-services-apis-create-account
+
