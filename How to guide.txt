@@ -1,5 +1,25 @@
 How to guide:
 
+WORKING IMAGE SEARCH
+{
+	Website:
+	https://google-images-download.readthedocs.io/en/latest/examples.html
+
+	Install:
+	pip3 install google_images_download
+
+	Working Code:
+	{
+		from google_images_download import google_images_download   #importing the library
+
+		response = google_images_download.googleimagesdownload()   #class instantiation
+
+		arguments = {"keywords":"Black Panther Movie Poster","limit":1,"print_urls":True}   #creating list of arguments
+		paths = response.download(arguments)   #passing the arguments to the function
+		print(paths)   #printing absolute paths of the downloaded images
+	}
+}
+
 DID NOT WORK{
 	Go to Website:
 	https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/image-sdk-python-quickstart
@@ -54,22 +74,3 @@ DID NOT WORK
 	}
 }
 
-WORKING IMAGE SEARCH
-{
-	Website:
-	https://google-images-download.readthedocs.io/en/latest/examples.html
-
-	Install:
-	pip3 install google_images_download
-
-	Working Code:
-	{
-		from google_images_download import google_images_download   #importing the library
-
-		response = google_images_download.googleimagesdownload()   #class instantiation
-
-		arguments = {"keywords":"Black Panther Movie Poster","limit":1,"print_urls":True}   #creating list of arguments
-		paths = response.download(arguments)   #passing the arguments to the function
-		print(paths)   #printing absolute paths of the downloaded images
-	}
-}
