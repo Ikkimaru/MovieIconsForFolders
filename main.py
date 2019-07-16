@@ -6,7 +6,10 @@ from google_images_download import google_images_download   #Importing Image Sea
 #Pip install image
 from PIL import Image 	#Conver To Ico
 import configparser 	#Edit INI Files
+from pathlib import Path		#Find most recent file (jpg)
 
+
+icoSize = 256, 256 #ICO Resolution
 
 path = os.getcwd()
 
@@ -28,10 +31,10 @@ def create_ini_files(path, name):
 		os.system(commandPrompt)
 		
 		#Change folder attribute to System
-		folderCommand = "attrib +s " + "\"" + path.replace("\\", "/") + "/" + file + "\""
+		folderCommand = "attrib +s " + "\"" + path.replace("\\", "/") + "/" + name + "\""
 		os.system(folderCommand)
 
-		return fileName
+		return True
 
 
 #Lists items in given directory
@@ -42,20 +45,21 @@ for item in os.listdir(path):
 
 response = google_images_download.googleimagesdownload()   #class instantiation
 
-for file in folders:
-	fileName = create_ini_files(path, file)
+for movie in folders:
+	fileExist = create_ini_files(path, movie)
 
 	#Only Download if ini file does not exist
-	if(fileName):
+	if(fileExist):
 		#Download Image of Folder
-		arguments = {"keywords": file + " Movie Poster","limit":1,"print_urls":True, "output_directory": path, "image_directory": file}   # "format": 'ico's
+		arguments = {"keywords": movie + " Movie Poster","limit":1,"print_urls":True, "output_directory": path, "image_directory": movie, "prefix": "FolderIcon"}   # "format": 'ico's
 		paths = response.download(arguments)   #passing the arguments to the function
 		print(paths)   #printing absolute paths of the downloaded images
-
-		#Convert Image to ICO
-		#original = Image.open('/home/eben/Python/MovieIconsForFolders/Movies/Avatar/1.61OUGpUfAyL._SY679_.jpg') # you can try with whatever format
-		#original.save('/home/eben/Python/MovieIconsForFolders/Movies/Avatar/newfavicon.ico') 	# not recognized on XP
-
+		for i in os.listdir(path + "\\" + movie):
+			if (i.startswith("FolderIcon")):
+				#Convert Image to ICO
+				original = Image.open(path + "\\" + movie + "\\" + i) # you can try with whatever format
+				im_resized = original.resize(icoSize, Image.ANTIALIAS)
+				im_resized.save(path + "\\" + movie + "\\" + "Folder.ico", "ICO")
 
 #Set icons based on OS
 def linuxIcons():
